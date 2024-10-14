@@ -1,27 +1,27 @@
 import React, { useEffect } from 'react'
-import {  useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@store/store'
 import { rootActions } from '@app-store/slices'
 // import { $inQuerySearch } from '@utils/helpers/queryHelpers'
 
-const LabelTag=()=>{
-const dispatch = useDispatch()
-const { data: tagList } = useSelector((state: RootState) => state.labelTag.list)
+const LabelTag = () => {
+    const dispatch = useDispatch()
+    const { data: tagList } = useSelector((state: RootState) => state.labelTag.list)
 
-useEffect(()=>{
-    const data = {
-        startAt:0,
-        maxResults:10,
-        jql: 'creator=user1 ORDER BY created DESC'
-    }
-dispatch(
+    useEffect(() => {
+        const data = {
+            startAt: 0,
+            maxResults: 10,
+            jql: 'creator=user1 ORDER BY created DESC'
+        }
+        dispatch(
             rootActions.labelTag.list.onRequest({
                 data
                 //query: $inQuerySearch('type', ['Directory', 'Company', 'Generic', 'Contact'], false)
             })
         )
-    //rootActions[modelName][actionName].onRequest
-              /*
+        //rootActions[modelName][actionName].onRequest
+        /*
               const data = {
                 name: 'name',
                 textColor: '#ff681a',
@@ -37,8 +37,8 @@ dispatch(
                     }
                 })
             )*/
-            //remove
-            /*dispatch(
+        //remove
+        /*dispatch(
             rootActions[modelName][actionName].onRequest({
                 id: newRecord._id || newRecord.id,
                 data: { badges },
@@ -49,7 +49,7 @@ dispatch(
                 }
             })
         )*/
-        
+
         //edit
         /*dispatch(
             rootActions.labelTag.edit.onRequest({
@@ -62,11 +62,12 @@ dispatch(
                 }
             })
         )*/
-},[])
-return <div>Hi
-    <div>
-        {tagList?.issues?.map(issue=><div key={issue.id}>{issue.fields.summary}</div>)}
-    </div>
-</div>
+    }, [])
+    return (
+        <div>
+            Hi
+            <div>{tagList?.issues?.map(issue => <div key={issue.id}>{issue.fields.summary}</div>)}</div>
+        </div>
+    )
 }
 export default LabelTag
